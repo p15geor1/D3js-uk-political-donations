@@ -6,6 +6,8 @@ var force, node, data, maxVal;
 var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
+var snd = new Audio("button click.mp3");
+
 var partyCentres = { 
     con: { x: w / 3, y: h / 3.3}, 
     lab: {x: w / 3, y: h / 2.3}, 
@@ -21,7 +23,7 @@ var entityCentres = {
 		individual: {x: w / 3.65, y: h / 3.3},
 	};
 
-var fill = d3.scale.ordinal().range(["#F02233", "#087FBD", "#FDBB30"]);
+var fill = d3.scale.ordinal().range(["#FFFF00", "#FF00FF", "#B8B8B8"]);
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
@@ -43,6 +45,8 @@ var comma = d3.format(",.0f");
 
 function transition(name) {
 	if (name === "all-donations") {
+		snd.currentTime = 0;
+		snd.play();
 		$("#initial-content").fadeIn(250);
 		$("#value-scale").fadeIn(1000);
 		$("#view-donor-type").fadeOut(250);
@@ -52,6 +56,8 @@ function transition(name) {
 		//location.reload();
 	}
 	if (name === "group-by-party") {
+		snd.currentTime = 0;
+		snd.play();
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
@@ -60,6 +66,8 @@ function transition(name) {
 		return partyGroup();
 	}
 	if (name === "group-by-donor-type") {
+		snd.currentTime = 0;
+		snd.play();
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
@@ -68,6 +76,8 @@ function transition(name) {
 		return donorType();
 	}
 	if (name === "group-by-money-source")
+		snd.currentTime = 0;
+		snd.play();
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
@@ -75,6 +85,7 @@ function transition(name) {
 		$("#view-source-type").fadeIn(1000);
 		return fundsType();
 	}
+
 
 function start() {
 
@@ -92,7 +103,8 @@ function start() {
 		.attr("r", 0)
 		.style("fill", function(d) { return fill(d.party); })
 		.on("mouseover", mouseover)
-		.on("mouseout", mouseout);
+		.on("mouseout", mouseout)
+		.on("click", function(d) { window.open('https://google.com/search?q=' + d.donor)});
 		// Alternative title based 'tooltips'
 		// node.append("title")
 		//	.text(function(d) { return d.donor; });
@@ -317,9 +329,8 @@ function mouseover(d, i) {
 	var offset = $("svg").offset();
 	
 
-
 	// image url that want to check
-	var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
+	var imageFile = "https://raw.gitbusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
 
 	
 	
@@ -350,6 +361,7 @@ function mouseover(d, i) {
 
 function mouseout() {
 	// no more tooltips
+	   
 		var mosie = d3.select(this);
 
 		mosie.classed("active", false);
@@ -357,6 +369,8 @@ function mouseout() {
 		d3.select(".tooltip")
 			.style("display", "none");
 		}
+
+
 
 $(document).ready(function() {
 		d3.selectAll(".switch").on("click", function(d) {
