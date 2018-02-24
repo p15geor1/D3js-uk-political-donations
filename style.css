@@ -2,7 +2,9 @@ body {
     background-color: #ffffff;
     font-family:'Raleway', 'Open Sans', sans-serif;
 }
+
 p {
+    transform: scale(1.05);
     margin: 5px 0;
 }
 strong {
@@ -63,15 +65,15 @@ li {
 /*  Party view */
 #conservative, #labour, #libdem { padding: 10px; }
 #conservative {
-    background: rgba(8, 127, 189, 0.2);
+    background: rgb(255, 0, 255);
     top: 110px;
 }
 #labour {
-    background: rgba(240, 34, 51, 0.2);
+    background: rgb(255, 255, 0);
     top: 330px;
 }
 #libdem {
-    background: rgba(253, 187, 48, 0.2);
+    background: rgb(184, 184, 184);
     top: 550px;
 }
 
@@ -152,7 +154,7 @@ circle.active {
     margin: 0.2em;
 }
 .lab {
-    fill: #F02233;
+    fill: #40ff00;
 }
 .lib {
     fill: #FDBB30;
@@ -235,4 +237,11 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 .pure-button-active, .pure-button:active {
     color: rgb(0, 120, 231);
     color: #fff
+}
+
+h2:hover , p:hover, h1:hover, h3:hover, h5:hover {
+    z-index: 55 !important;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: scale(1.1,1.2);
+    transform: scale(1.1,1.2);
 }
