@@ -172,9 +172,9 @@ function fundsType() {
 
 function lettersGroup(){
 	force.gravity(0)
-		.friction(0.75)
-		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", types)
+		.friction(0.9)
+		.charge(function(d) { return -Math.pow(d.radius, 2) / 2.8; })
+		.on("tick", all)
 		.start();
 }
 
