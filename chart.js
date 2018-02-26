@@ -52,6 +52,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
+		$("#view-source-letters").fadeOut(250);
 		return total();
 		//location.reload();
 	}
@@ -63,6 +64,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeIn(1000);
+		$("#view-source-letters").fadeOut(250);
 		return partyGroup();
 	}
 	if (name === "group-by-donor-type") {
@@ -73,9 +75,10 @@ function transition(name) {
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-donor-type").fadeIn(1000);
+		$("#view-source-letters").fadeOut(250);
 		return donorType();
 	}
-	if (name === "group-by-money-source")
+	if (name === "group-by-money-source" ){
 		snd.currentTime = 0;
 		snd.play();
 		$("#initial-content").fadeOut(250);
@@ -83,9 +86,22 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
+		$("#view-source-letters").fadeOut(250);
 		return fundsType();
+		
 	}
-
+	if (name === "group-by-letters"){
+		snd.currentTime = 0;
+		snd.play();
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-donor-type").fadeOut(250);
+		$("#view-party-type").fadeOut(250);
+		$("#view-source-type").fadeOut(1000);
+		$("#view-source-letters").fadeIn(250);
+		return lettersGroup();
+	}
+}
 
 function start() {
 
@@ -147,6 +163,14 @@ function donorType() {
 }
 
 function fundsType() {
+	force.gravity(0)
+		.friction(0.75)
+		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
+		.on("tick", types)
+		.start();
+}
+
+function lettersGroup(){
 	force.gravity(0)
 		.friction(0.75)
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
@@ -335,13 +359,7 @@ function mouseover(d, i) {
 	
 	
 	// *******************************************
-	
-	
-	
 
-	
-
-	
 	var infoBox = "<p> Source: <b>" + donor + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
 	
 	 							+ "<p> Recipient: <b>" + party + "</b></p>"
@@ -384,5 +402,3 @@ $(document).ready(function() {
     return d3.csv("data/7500up.csv", display);
 
 });
-
-
