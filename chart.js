@@ -98,7 +98,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeOut(1000);
-		$("#view-source-letters").fadeIn(250);
+		$("#view-source-letters").fadeOut(250);
 		return lettersGroup();
 	}
 }
