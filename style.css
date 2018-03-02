@@ -108,6 +108,7 @@ li {
 /* letters scale */
 #view-source-letters {
     text-align: center;
+    right: 400px;
 }
 
 /* Value scale */
