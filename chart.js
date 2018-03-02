@@ -285,19 +285,16 @@ function moveToFunds(alpha) {
 
 function moveToLetters(alpha){
 	return function(d) {
-		
-			if (d.value <= 100001) {
-				centreY = 100
-				centreX =  150
-			} else  if (d.value <= 500001) {
-				centerX =  300
-				centreY = 350
-			} else  if (d.value <= maxVal) {
-				centerX = 600
-				centreY = 650
-			} else {
-				centreY = svgCentre.y;
-			}
+		var centreY = svgCentre.y + 75;
+		if (d.value <= 100001) {
+			centreX =  150
+		} else  if (d.value <= 500001) {
+			centerX =  300
+		} else  if (d.value <= maxVal) {
+			centerX = 600
+		} else {
+			centreY = svgCentre.y;
+		}
 	};
 	
 }
