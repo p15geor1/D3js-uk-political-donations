@@ -1,4 +1,3 @@
-// GLOBALS
 var w = 1000,h = 900;
 var padding = 2;
 var nodes = [];
@@ -286,12 +285,8 @@ function moveToFunds(alpha) {
 
 function moveToLetters(alpha){
 	return function(d) {
-		var centreX = partyCentres[d.party].x + 50;
-		var centreY = partyCentres[d.party].y;
-		}
-
-		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
-		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+		d.x += 200
+		d.y += 300
 	};
 	
 }
