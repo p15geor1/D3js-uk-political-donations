@@ -287,13 +287,13 @@ function moveToLetters(alpha){
 	return function(d) {
 		var centreX = svgCentre.x + 75;			
 		if (d.value <= 150001) {
-			centreY = svgCentre.y - 75;
+			centreY = svgCentre.y - 120;
 		}
 		else if(d.value <= 550001) {
 			centreY = svgCentre.y + 125;
 		}
 		else{
-			centreY = svgCentre.y + 200;
+			centreY = svgCentre.y + 220;
 		}
 		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
 		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
