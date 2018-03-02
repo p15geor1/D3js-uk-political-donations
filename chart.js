@@ -1,4 +1,3 @@
-// GLOBALS
 var w = 1000,h = 900;
 var padding = 2;
 var nodes = [];
@@ -172,9 +171,9 @@ function fundsType() {
 
 function lettersGroup(){
 	force.gravity(0)
-		.friction(0.75)
-		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", types)
+		.friction(0.9)
+		.charge(function(d) { return -Math.pow(d.radius, 2) / 2.8; })
+		.on("tick", lettersfunc)
 		.start();
 }
 
@@ -285,18 +284,19 @@ function moveToFunds(alpha) {
 }
 
 function moveToLetters(alpha){
-	return function(d){
-		var centreY = entityCentres[d.entity].y;
-		var centreX = entityCentres[d.entity].x;
-		if (d.entity !== 'pub') {
-			centreY = 200;
-			centreX = 250;
-		} else {
-			centreX = entityCentres[d.entity].x + 60;
-			centreY = 380;
+	return function(d) {
+		var centreX = svgCentre.x + 75;			
+		if (d.value <= 150001) {
+			centreY = svgCentre.y - 120;
 		}
-		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
-		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+		else if(d.value <= 550001) {
+			centreY = svgCentre.y + 125;
+		}
+		else{
+			centreY = svgCentre.y + 220;
+		}
+		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
+		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
 	};
 	
 }
