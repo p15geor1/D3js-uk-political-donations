@@ -285,22 +285,18 @@ function moveToFunds(alpha) {
 
 function moveToLetters(alpha){
 	return function(d) {
-		var centreX = svgCentre.x + 75;
-			if (d.value <= 25001) {
-				centreY = svgCentre.y 
-			} else if (d.value <= 50001) {
-				centreY = svgCentre.y 
-			} else if (d.value <= 100001) {
-				centreY = svgCentre.y 
+		
+			if (d.value <= 100001) {
+				centreY = svgCentre.y
+				centreX = svgCentre.x + 75; 
 			} else  if (d.value <= 500001) {
 				centreY = svgCentre.y 
-			} else  if (d.value <= 1000001) {
+				centreX = svgCentre.x + 150; 
+			} else  (d.value <= maxVal) {
 				centreY = svgCentre.y 
-			} else  if (d.value <= maxVal) {
-				centreY = svgCentre.y 
-			} else {
-				centreY = svgCentre.y;
+				centreX = svgCentre.x + 400; 
 			}
+		
 		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
 		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
 	};
