@@ -174,7 +174,7 @@ function lettersGroup(){
 	force.gravity(0)
 		.friction(0.9)
 		.charge(function(d) { return -Math.pow(d.radius, 2) / 2.8; })
-		.on("tick", all)
+		.on("tick", lettersfunc)
 		.start();
 }
 
