@@ -106,10 +106,25 @@ li {
 }
 
 /* letters scale */
+#view-source-letters {
+    height: 100%;
+    left: 600px;
+    width: 370px;
+}
+
+#div_0_1500 {
+    top: 120px;
+    position: relative;
+}
+
 #div_1500_5500 {
-    text-align: center;
-    left: 1500px;
-    down: 200px;
+    top: 400px;
+    position: relative;
+}
+
+#div_more_5500 {
+    top: 650px;
+    position: relative;
 }
 
 /* Value scale */
