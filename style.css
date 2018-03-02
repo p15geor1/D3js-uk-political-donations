@@ -113,7 +113,7 @@ li {
 }
 
 #div_1500_5500{
-    down: 600px;
+    down: 600px !important;
 }
 
 /* Value scale */
