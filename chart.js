@@ -294,9 +294,7 @@ function moveToLetters(alpha){
 			centerX = 600
 		}
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
-		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
 	};
-	
 }
 
 // Collision detection function by m bostock
