@@ -105,6 +105,11 @@ li {
     right: 0
 }
 
+/* letters scale */
+#0-1500 {
+    left: 650px;
+}
+
 /* Value scale */
 
 #value-scale {
