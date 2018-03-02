@@ -291,19 +291,19 @@ function moveToLetters(alpha){
 				centreY = svgCentre.y + 20;
 			} else if (d.value <= 50000) {
 				centerX = svgCentre.x + 40;
-				centreY = svgCentre.y + 40;
+				centreY = svgCentre.y + 20;
 			} else if (d.value <= 100001) {
 				centerX = svgCentre.x + 60;
-				centreY = svgCentre.y + 60;
+				centreY = svgCentre.y + 20;
 			} else  if (d.value <= 500001) {
 				centerX = svgCentre.x + 100;
-				centreY = svgCentre.y + 100;
+				centreY = svgCentre.y + 20;
 			} else  if (d.value <= 1000001) {
 				centerX = svgCentre.x + 150;
-				centreY = svgCentre.y + 150;
+				centreY = svgCentre.y + 20;
 			} else  if (d.value <= maxVal) {
-				centerX = svgCentre.x + 200;
-				centreY = svgCentre.y + 200;
+				centerX = svgCentre.x + 180;
+				centreY = svgCentre.y + 20;
 			} else {
 				centreY = svgCentre.y;
 			}
