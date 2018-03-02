@@ -290,10 +290,10 @@ function moveToLetters(alpha){
 			centreY = svgCentre.y ;
 		}
 		else if(d.value <= 500001) {
-			centreY = svgCentre.y + 75;
+			centreY = svgCentre.y + 120;
 		}
 		else{
-			centreY = svgCentre.y + 100;
+			centreY = svgCentre.y + 200;
 		}
 		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
 		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
