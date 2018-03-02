@@ -286,8 +286,8 @@ function moveToFunds(alpha) {
 
 function moveToLetters(alpha){
 	return function(d) {
-		d.x += 200
-		d.y += 300
+		d.x += entityCentres[d.entity].x;
+		d.y += entityCentres[d.entity].y;
 	};
 	
 }
