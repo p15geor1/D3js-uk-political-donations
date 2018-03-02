@@ -208,6 +208,13 @@ function all(e) {
 			.attr("cy", function(d) {return d.y; });
 }
 
+function lettersfunc(e)
+{
+	node.each(moveToLetters(e.alpha));
+
+		node.attr("cx", function(d) { return d.x; })
+			.attr("cy", function(d) {return d.y; });
+}
 
 function moveToCentre(alpha) {
 	return function(d) {
@@ -275,6 +282,23 @@ function moveToFunds(alpha) {
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
 	};
+}
+
+function moveToLetters(alpha){
+	return function(d){
+		var centreY = entityCentres[d.entity].y;
+		var centreX = entityCentres[d.entity].x;
+		if (d.entity !== 'pub') {
+			centreY = 200;
+			centreX = 250;
+		} else {
+			centreX = entityCentres[d.entity].x + 60;
+			centreY = 380;
+		}
+		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
+		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+	};
+	
 }
 
 // Collision detection function by m bostock
