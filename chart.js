@@ -287,14 +287,14 @@ function moveToLetters(alpha){
 	return function(d) {
 		
 			if (d.value <= 100001) {
-				centreY = h / 2.3
-				centreX =  w / 3.65
+				centreY = 100
+				centreX =  150
 			} else  if (d.value <= 500001) {
-				centerX =  w / 3
-				centreY = h / 3.3
+				centerX =  300
+				centreY = 350
 			} else  if (d.value <= maxVal) {
-				centerX = w / 2.75
-				centreY = h / 1.5
+				centerX = 600
+				centreY = 650
 			} else {
 				centreY = svgCentre.y;
 			}
