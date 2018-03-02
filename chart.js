@@ -286,24 +286,15 @@ function moveToFunds(alpha) {
 function moveToLetters(alpha){
 	return function(d) {
 		
-			if (d.value <= 20000) {
-				centerX = svgCentre.x + 20;
-				centreY = svgCentre.y + 20;
-			} else if (d.value <= 50000) {
-				centerX = svgCentre.x + 40;
-				centreY = svgCentre.y + 20;
-			} else if (d.value <= 100001) {
-				centerX = svgCentre.x + 60;
-				centreY = svgCentre.y + 20;
+			if (d.value <= 100001) {
+				centreY = h / 2.3
+				centreX =  w / 3.65
 			} else  if (d.value <= 500001) {
-				centerX = svgCentre.x + 100;
-				centreY = svgCentre.y + 20;
-			} else  if (d.value <= 1000001) {
-				centerX = svgCentre.x + 150;
-				centreY = svgCentre.y + 20;
+				centerX =  w / 3
+				centreY = h / 3.3
 			} else  if (d.value <= maxVal) {
-				centerX = svgCentre.x + 180;
-				centreY = svgCentre.y + 20;
+				centerX = w / 2.75
+				centreY = h / 1.5
 			} else {
 				centreY = svgCentre.y;
 			}
