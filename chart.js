@@ -1,10 +1,11 @@
-// GLOBALS
 var w = 1000,h = 900;
 var padding = 2;
 var nodes = [];
 var force, node, data, maxVal;
 var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
+
+var snd = new Audio("button click.mp3");
 
 var partyCentres = { 
     con: { x: w / 3, y: h / 3.3}, 
@@ -21,7 +22,7 @@ var entityCentres = {
 		individual: {x: w / 3.65, y: h / 3.3},
 	};
 
-var fill = d3.scale.ordinal().range(["#F02233", "#087FBD", "#FDBB30"]);
+var fill = d3.scale.ordinal().range(["#FFFF00", "#FF00FF", "#B8B8B8"]);
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
@@ -43,38 +44,63 @@ var comma = d3.format(",.0f");
 
 function transition(name) {
 	if (name === "all-donations") {
+		snd.currentTime = 0;
+		snd.play();
 		$("#initial-content").fadeIn(250);
 		$("#value-scale").fadeIn(1000);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
+		$("#view-source-letters").fadeOut(250);
 		return total();
 		//location.reload();
 	}
 	if (name === "group-by-party") {
+		snd.currentTime = 0;
+		snd.play();
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeIn(1000);
+		$("#view-source-letters").fadeOut(250);
 		return partyGroup();
 	}
 	if (name === "group-by-donor-type") {
+		snd.currentTime = 0;
+		snd.play();
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-donor-type").fadeIn(1000);
+		$("#view-source-letters").fadeOut(250);
 		return donorType();
 	}
-	if (name === "group-by-money-source")
+	if (name === "group-by-money-source" ){
+		snd.currentTime = 0;
+		snd.play();
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
+		$("#view-source-letters").fadeOut(250);
 		return fundsType();
+		
 	}
+	if (name === "group-by-letters"){
+		snd.currentTime = 0;
+		snd.play();
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-donor-type").fadeOut(250);
+		$("#view-party-type").fadeOut(250);
+		$("#view-source-type").fadeOut(1000);
+		$("#view-source-letters").fadeIn(250);
+		return lettersGroup();
+	}
+}
 
 function start() {
 
@@ -92,7 +118,8 @@ function start() {
 		.attr("r", 0)
 		.style("fill", function(d) { return fill(d.party); })
 		.on("mouseover", mouseover)
-		.on("mouseout", mouseout);
+		.on("mouseout", mouseout)
+		.on("click", function(d) { window.open('https://google.com/search?q=' + d.donor)});
 		// Alternative title based 'tooltips'
 		// node.append("title")
 		//	.text(function(d) { return d.donor; });
@@ -142,6 +169,14 @@ function fundsType() {
 		.start();
 }
 
+function lettersGroup(){
+	force.gravity(0)
+		.friction(0.9)
+		.charge(function(d) { return -Math.pow(d.radius, 2) / 2.8; })
+		.on("tick", lettersfunc)
+		.start();
+}
+
 function parties(e) {
 	node.each(moveToParties(e.alpha));
 
@@ -172,6 +207,13 @@ function all(e) {
 			.attr("cy", function(d) {return d.y; });
 }
 
+function lettersfunc(e)
+{
+	node.each(moveToLetters(e.alpha));
+
+		node.attr("cx", function(d) { return d.x; })
+			.attr("cy", function(d) {return d.y; });
+}
 
 function moveToCentre(alpha) {
 	return function(d) {
@@ -239,6 +281,24 @@ function moveToFunds(alpha) {
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
 	};
+}
+
+function moveToLetters(alpha){
+	return function(d) {
+		var centreX = svgCentre.x + 75;			
+		if (d.value <= 150001) {
+			centreY = svgCentre.y - 120;
+		}
+		else if(d.value <= 550001) {
+			centreY = svgCentre.y + 125;
+		}
+		else{
+			centreY = svgCentre.y + 220;
+		}
+		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
+		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
+	};
+	
 }
 
 // Collision detection function by m bostock
@@ -317,20 +377,13 @@ function mouseover(d, i) {
 	var offset = $("svg").offset();
 	
 
-
 	// image url that want to check
-	var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
+	var imageFile = "https://raw.gitbusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
 
 	
 	
 	// *******************************************
-	
-	
-	
 
-	
-
-	
 	var infoBox = "<p> Source: <b>" + donor + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
 	
 	 							+ "<p> Recipient: <b>" + party + "</b></p>"
@@ -345,11 +398,16 @@ function mouseover(d, i) {
 		.html(infoBox)
 			.style("display","block");
 	
+	window.speechSynthesis.cancel(msg);
+
+	var msg = new SpeechSynthesisUtterance("Donor " + d.donor + "Total value " + d.value + "pounds");
+	window.speechSynthesis.speak(msg);
 	
 	}
 
 function mouseout() {
 	// no more tooltips
+	   
 		var mosie = d3.select(this);
 
 		mosie.classed("active", false);
@@ -357,6 +415,8 @@ function mouseout() {
 		d3.select(".tooltip")
 			.style("display", "none");
 		}
+
+
 
 $(document).ready(function() {
 		d3.selectAll(".switch").on("click", function(d) {
@@ -366,5 +426,3 @@ $(document).ready(function() {
     return d3.csv("data/7500up.csv", display);
 
 });
-
-

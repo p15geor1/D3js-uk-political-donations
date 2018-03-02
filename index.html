@@ -15,12 +15,14 @@
     <meta property="og:image:height" content="200" />
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,700|Raleway:400,700">
-
     <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-44807543-1']);
     _gaq.push(['_trackPageview']);
+    
+    var snd = new Audio("button click");
 
+    
     (function() {
         var ga = document.createElement('script');
         ga.type = 'text/javascript';
@@ -34,6 +36,7 @@
 <!-- Add feature detection and noscript -->
 
 <body>
+    
 
     <header role="banner" id="title">
         <h1>Who's funding the big three?</h1>
@@ -48,11 +51,13 @@
             </li>
             <li><a href="#" role="button" class="pure-button switch" id="group-by-donor-type">Split by type of donor</a>
             </li>
+            <li><a href="#" role="button" class="pure-button switch" id="group-by-letters">Split by letters</a>
+            </li>
         </ul>
     </nav>
-
     <div id="annotations">
-
+        
+        
         <!-- Initial annotations -->
         <div id="initial-content">
             <h2>Political donations and funding accepted by the Conservatives, Labour and Liberal Democrats between the 2010 general election and August 2013, when this data was collected.</h2>
@@ -85,7 +90,18 @@
             </div>
         </div>
         <!-- End initial-->
-
+        
+        <div id = "view-source-letters">
+            <div id="div_0_1500">
+                <p> 0-150000 </p>
+            </div>
+            <div id="div_1500_5500">
+                <p>  150000-550000 </p>
+            </div>
+            <div id="div_more_5500">
+                <p>  more than 550000 </p>
+            </div>
+        </div>
         <!-- Public or private money annotations -->
         <div id="view-source-type">
             <div id="public-or-private-money" class="public-private">
@@ -200,7 +216,6 @@
         </div>
     </div>
     <div id="chart"></div>
-
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>
