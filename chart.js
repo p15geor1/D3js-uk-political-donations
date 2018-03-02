@@ -286,8 +286,12 @@ function moveToFunds(alpha) {
 
 function moveToLetters(alpha){
 	return function(d) {
-		d.x += entityCentres[d.entity].x;
-		d.y += entityCentres[d.entity].y;
+		var centreX = partyCentres[d.party].x + 50;
+		var centreY = partyCentres[d.party].y;
+		}
+
+		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
+		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
 	};
 	
 }
